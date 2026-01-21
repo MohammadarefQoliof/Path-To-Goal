@@ -2,7 +2,7 @@ let btn = document.querySelector(".new")
 let main = document.querySelector("body")
 let htmlNum = localStorage.getItem("htmlNum")
 if(!htmlNum){
-    localStorage.setItem("htmlNum", "1")
+    localStorage.setItem("htmlNum", "0")
 }
 btn.addEventListener("click", ()=>{
     let overlay = document.createElement("div")
@@ -65,7 +65,15 @@ btn.addEventListener("click", ()=>{
     topSec.append(title, taskNum, button, label1, label2)
     overlay.append(topSec)
     main.append(overlay)
+    
     button.addEventListener("click", ()=>{
-        window.location.href = `./HTML/sec${htmlNum}.html`
+        let htmlNumber = Number(localStorage.getItem("htmlNum"))
+        htmlNumber += 1;
+        localStorage.setItem("htmlNum", String(htmlNumber))
+        localStorage.setItem(`time sec${htmlNumber}`, timeCheck.checked)
+        localStorage.setItem(`price sec${htmlNumber}`, priceCheck.checked)
+        localStorage.setItem(`task number sec${htmlNumber}`, taskNum.value)
+        localStorage.setItem(`title sec${htmlNumber}`, title.value)
+        window.location.href = `./HTML/sec${htmlNumber}.html`
     })
 })
