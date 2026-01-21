@@ -86,3 +86,24 @@ body{
     background-color: rgb(221, 86, 86);
     border: 3px solid rgb(221, 86, 86);
 }
+.shakeAnimation{
+    animation: shake 0.4s forwards;
+    position: relative;
+    background-color: lightcoral;
+    border: 2px solid red;
+}
+
+@keyframes shake{
+    0%{
+        transform: translateX(0px);
+    }
+    25%{
+        transform: translateX(-10px);;
+    }
+    50%{
+        transform: translateX(10px);;
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}

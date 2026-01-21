@@ -48,10 +48,11 @@ btn.addEventListener("click", ()=>{
     label2.style.position = "relative"
     label2.style.right = "153px"
     
-    title.maxLength = "30"
+    title.maxLength = 30
     title.placeholder = "Title"
     
-    taskNum.maxLength = "2"
+    taskNum.type = "Text"
+    taskNum.maxLength = 2
     taskNum.placeholder = "Tasks number"
     
     overlay.classList.add("overlay")
@@ -65,15 +66,26 @@ btn.addEventListener("click", ()=>{
     topSec.append(title, taskNum, button, label1, label2)
     overlay.append(topSec)
     main.append(overlay)
+
+    taskNum.classList.remove("shakeAnimation")
+    title.classList.remove("shakeAnimation")
     
     button.addEventListener("click", ()=>{
         let htmlNumber = Number(localStorage.getItem("htmlNum"))
         htmlNumber += 1;
-        localStorage.setItem("htmlNum", String(htmlNumber))
-        localStorage.setItem(`time sec${htmlNumber}`, timeCheck.checked)
-        localStorage.setItem(`price sec${htmlNumber}`, priceCheck.checked)
-        localStorage.setItem(`task number sec${htmlNumber}`, taskNum.value)
-        localStorage.setItem(`title sec${htmlNumber}`, title.value)
-        window.location.href = `./HTML/sec${htmlNumber}.html`
+        if(title.value == ""){
+            taskNum.classList.remove("shakeAnimation")
+            title.classList.add("shakeAnimation")
+        }else if(taskNum.value == "" || isNaN(taskNum.value)){
+            title.classList.remove("shakeAnimation")
+            taskNum.classList.add("shakeAnimation")
+        }else{
+            localStorage.setItem("htmlNum", String(htmlNumber))
+            localStorage.setItem(`boolean time sec${htmlNumber}`, timeCheck.checked)
+            localStorage.setItem(`boolean price sec${htmlNumber}`, priceCheck.checked)
+            localStorage.setItem(`task number sec${htmlNumber}`, taskNum.value)
+            localStorage.setItem(`title sec${htmlNumber}`, title.value)
+            window.location.href = `./HTML/sec${htmlNumber}.html`
+        }
     })
 })
