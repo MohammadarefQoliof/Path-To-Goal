@@ -82,6 +82,81 @@ if(localStorage.getItem("sec1 saved") == "false"){
         }
         mainDiv.append(div)
     }
+    let div = document.createElement("div")
+    let divInputButton = document.createElement("div")
+    let text = document.createElement("h1")
+    let input = document.createElement("input")
+    let confrimButton = document.createElement("div")
+    let percent = document.createElement("p")
+    let completeBar = document.createElement("div")
+    let completed = document.createElement("div")
+
+    input.type = "text"
+    input.maxLength = 5
+    input.placeholder = "Current balance"
+
+    confrimButton.textContent = "NEXT"
+    
+    div.classList.add("things", "total")
+    text.classList.add("words", "nowidth")
+    input.classList.add("balanceInput")
+    confrimButton.classList.add("confirm")
+    divInputButton.classList.add("divInputButton")
+    percent.classList.add("percent")
+    completeBar.classList.add("completeBar")
+    completed.classList.add("completed")
+    
+    if(!localStorage.getItem("sec1 total")){
+        localStorage.setItem("sec1 total", "0")
+    }
+    
+    if(!localStorage.getItem("sec1 percentage")){
+        localStorage.setItem("sec1 percentage", "0")
+    }
+    if(!localStorage.getItem("sec1 width")){
+        localStorage.setItem("sec1 width", "0")
+    }
+
+    let total = Number(localStorage.getItem("sec1 total"))
+    for(let i = 0; i < myPrices.length; i++){
+        total += Number(myPrices[i])
+    }
+
+    text.textContent = `Total: ${total} AZN`
+    percent.textContent = `${localStorage.getItem("sec1 percentage")}%`
+    completed.style.width = `${localStorage.getItem("sec1 width")}px`
+    
+    input.classList.remove("shakeAnimation")
+
+    confrimButton.addEventListener("click", ()=>{
+        if(isNaN(input.value) || input.value == ""){
+            input.classList.add("shakeAnimation")
+        }else{
+            input.classList.remove("shakeAnimation")
+            let num = (input.value * 100) / total
+            let fullPercent = Math.floor(num)
+            let widthSize = (790 * fullPercent) / 100
+            if(fullPercent > 100){
+                fullPercent = 100
+            }else if(fullPercent < 0){
+                fullPercent = 0
+            }
+            if(widthSize > 790){
+                widthSize = 790
+            }else if(widthSize < 0){
+                widthSize = 0
+            }
+            localStorage.setItem("sec1 percentage", fullPercent)
+            localStorage.setItem("sec1 width", widthSize)
+            completed.style.width = `${localStorage.getItem("sec1 width")}px`
+            percent.textContent = `${localStorage.getItem("sec1 percentage")}%`
+        }
+    })
+    
+    divInputButton.append(input, confrimButton)
+    completeBar.append(completed)
+    div.append(text)
+    mainDiv.append(div, divInputButton, percent, completeBar)
 }
 button.addEventListener("click", ()=>{
     for(let i = 1; i<=taskNum; i++){

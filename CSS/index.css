@@ -88,7 +88,6 @@ body{
 }
 .shakeAnimation{
     animation: shake 0.4s forwards;
-    position: relative;
     background-color: lightcoral;
     border: 2px solid red;
 }
