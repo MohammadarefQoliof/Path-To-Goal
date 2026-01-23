@@ -1,8 +1,29 @@
 let btn = document.querySelector(".new")
 let main = document.querySelector("body")
 let htmlNum = localStorage.getItem("htmlNum")
+
+for(let i = 1; i<=5; i++){
+    if(localStorage.getItem(`sec${i} saved`) == "true"){
+        let div = document.createElement("div")
+        let overlay = document.createElement("div")
+        let titleText = document.createElement("p")
+
+        div.classList.add("box")
+        overlay.classList.add("overlay2")
+        titleText.classList.add("titleText")
+
+        title = localStorage.getItem("sec1 title")
+        titleText.textContent = title
+
+
+        div.append(titleText)
+        btn.before(div)
+    }
+}
+
 if(!htmlNum){
     localStorage.setItem("htmlNum", "0")
+
 }
 btn.addEventListener("click", ()=>{
     let overlay = document.createElement("div")
@@ -81,10 +102,10 @@ btn.addEventListener("click", ()=>{
             taskNum.classList.add("shakeAnimation")
         }else{
             localStorage.setItem("htmlNum", String(htmlNumber))
-            localStorage.setItem(`boolean time sec${htmlNumber}`, timeCheck.checked)
-            localStorage.setItem(`boolean price sec${htmlNumber}`, priceCheck.checked)
-            localStorage.setItem(`task number sec${htmlNumber}`, taskNum.value)
-            localStorage.setItem(`title sec${htmlNumber}`, title.value)
+            localStorage.setItem(`sec${htmlNumber} boolean time`, timeCheck.checked)
+            localStorage.setItem(`sec${htmlNumber} boolean price`, priceCheck.checked)
+            localStorage.setItem(`sec${htmlNumber} task number`, taskNum.value)
+            localStorage.setItem(`sec${htmlNumber} title`, title.value)
             window.location.href = `./HTML/sec${htmlNumber}.html`
         }
     })
