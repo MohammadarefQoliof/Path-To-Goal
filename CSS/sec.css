@@ -77,10 +77,10 @@ body{
 }
 .words{
     font-weight: 500;
-    width: 200px;
+    /* width: 200px; */
 }
 .prices{
-    width: 200px;
+    /* width: 250px; */
     font-weight: 500;
     padding: 0 10px;
     border-left: 2px solid black;
@@ -142,6 +142,19 @@ body{
     animation: shake 0.4s forwards;
     background-color: lightcoral;
     border: 2px solid red;
+}
+.checkboxInput{
+    width: 49.6px;
+    height: 49.6px;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+}
+.checkBoxPlusDiv{
+    display: flex;
+    align-items: center;
+}
+.lineThrough{
+    text-decoration: line-through;
 }
 
 @keyframes shake{

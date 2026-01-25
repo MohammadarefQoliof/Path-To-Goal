@@ -4,25 +4,57 @@ let htmlNum = localStorage.getItem("htmlNum")
 
 for(let i = 1; i<=5; i++){
     if(localStorage.getItem(`sec${i} saved`) == "true"){
-        let div = document.createElement("div")
-        let overlay = document.createElement("div")
-        let titleText = document.createElement("p")
+        if(localStorage.getItem(`sec${i} boolean price`) == "false"){
+            let div = document.createElement("div")
+            let overlay = document.createElement("div")
+            let titleText = document.createElement("p")
+            let percentText = document.createElement("p")
+            percentText.style.zIndex = "1"
+            
+            
+            div.classList.add("box")
+            overlay.classList.add("overlay2")
+            titleText.classList.add("titleText")
+        
+            titleText.addEventListener("click", ()=>{
+                window.location.href = `../HTML/sec${i}.html`
+            })
+            
+            title = localStorage.getItem(`sec${i} title`)
+            titleText.textContent = title
+            
+            let checkedNum = localStorage.getItem(`sec${i} checked num`)
+            console.log(checkedNum);
+            
+            let taskNum = localStorage.getItem(`sec${i} task number`)
+            console.log(taskNum);
+            let percent = (checkedNum * 100) / taskNum;
+            let widthsize = (955 * percent) / 100
+            overlay.style.width = `${widthsize}px`
+            percentText.textContent = `${percent}%`
 
-        div.classList.add("box")
-        overlay.classList.add("overlay2")
-        titleText.classList.add("titleText")
 
-        title = localStorage.getItem("sec1 title")
-        titleText.textContent = title
+            div.append(titleText, overlay, percentText)
+            btn.before(div)
+        }else{
+            let percent = (955 * Number(localStorage.getItem(`sec${i} percentage`))) / 100
 
+            if(percent > 955){
+                percent = 955
+            }else if(percent < 0){
+                percent = 0
+            }
+            overlay.style.width = `${percent}px`
 
-        div.append(titleText)
-        btn.before(div)
+            div.append(titleText, overlay, percentText)
+            btn.before(div)
+        }
     }
+
 }
 
 if(!htmlNum){
-    localStorage.setItem("htmlNum", "0")
+    localStorage.setItem("htmlNum", "0")    
 
 }
 btn.addEventListener("click", ()=>{

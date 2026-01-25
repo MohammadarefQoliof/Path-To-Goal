@@ -1,42 +1,35 @@
-let title = localStorage.getItem("sec1 title")
-let taskNum = Number(localStorage.getItem("sec1 task number"))
+let title = localStorage.getItem("sec3 title")
+let taskNum = Number(localStorage.getItem("sec3 task number"))
 let mainDiv = document.querySelector("#main")
 let h1 = document.createElement("h1")
 h1.textContent = title
-let time = localStorage.getItem("sec1 boolean time")
-let price = localStorage.getItem("sec1 boolean price")
+let time = localStorage.getItem("sec3 boolean time")
+let price = localStorage.getItem("sec3 boolean price")
 mainDiv.append(h1)
 let button = document.createElement("div")
 button.classList.add("savebutton")
 button.textContent = "Save"
 
 
-if(!localStorage.getItem("sec1 saved")){
-    localStorage.setItem("sec1 saved", "false")
-}
-if(!localStorage.getItem("sec1 checked num")){
-    localStorage.setItem("sec1 checked num", "0")
+if(!localStorage.getItem("sec3 saved")){
+    localStorage.setItem("sec3 saved", "false")
 }
 
 
 let tasks = []
 let prices = []
 let times = []
-let checkedBoxes = []
-for(let i = 1; i<=taskNum; i++){
-    checkedBoxes.push("false")
-    localStorage.setItem("sec1 checked", JSON.stringify(checkedBoxes))
-}
-if(localStorage.getItem("sec1 saved") == "false"){
+if(localStorage.getItem("sec3 saved") == "false"){
     for(let i = 1; i<=taskNum; i++){
         let div = document.createElement("div")
-        let input = document.createElement("input")
         div.style.height = "70px"
+        let input = document.createElement("input")
         input.id = `div${i}`
         input.classList.add("input")
         input.placeholder = `Task ${i}`
         input.maxLength = 12
         div.append(input)
+        
         if(price == "true"){
             let input = document.createElement("input")
             input.id = `price${i}`
@@ -51,59 +44,25 @@ if(localStorage.getItem("sec1 saved") == "false"){
             input.type = "date"
             input.classList.add("timeInput")
             div.append(input)
-            localStorage.setItem("sec1 times", times)
+            localStorage.setItem("sec3 times", times)
         }
-        localStorage.setItem("sec1 tasks", tasks)
-        mainDiv.append(div, button)
+        localStorage.setItem("sec3 tasks", tasks)
+        mainDiv.append(div)
+        mainDiv.append(button)
     }
 }else{
     button.remove()
-    let nameoftasks = JSON.parse(localStorage.getItem("sec1 tasks"));
-    let myPrices = JSON.parse(localStorage.getItem("sec1 prices"));
-    let myDate = JSON.parse(localStorage.getItem("sec1 times"));
+    let nameoftasks = JSON.parse(localStorage.getItem("sec3 tasks"));
+    let myPrices = JSON.parse(localStorage.getItem("sec3 prices"));
+    let myDate = JSON.parse(localStorage.getItem("sec3 times"));
     
     for(let i = 0; i<nameoftasks.length; i++){
-        let checkBoxPlusDiv = document.createElement("div")
-        let checkboxInput = document.createElement("input")
         let div = document.createElement("div")
         let h1 = document.createElement("h1")
-        
         h1.textContent = nameoftasks[i]
-        
-        checkBoxChecked = localStorage.getItem("sec1 checked num")
-        
-        checkboxInput.type = "checkbox"
-
-        checkBoxPlusDiv.classList.add("checkBoxPlusDiv")
-        checkboxInput.classList.add("checkboxInput")
         div.classList.add("things")
         h1.classList.add("words")
-
-        
-
-        checkboxInput.addEventListener("change", ()=>{
-            if(checkboxInput.checked){
-                let checkedNum = JSON.parse(Number(localStorage.getItem("sec1 checked")))
-                for(let i = 0; i<checkedNum; i++){
-                    checkboxInput.checked = checkedNum[i]
-                    div.classList.add("lineThrough")
-                    checkedNum++
-                    localStorage.setItem("sec1 checked num", String(checkedNum))
-                }
-            }else{
-                let checkedNum = JSON.parse(Number(localStorage.getItem("sec1 checked")))
-                for(let i = 0; i<checkedNum; i++){
-                    checkboxInput.checked = checkedNum[i]
-                    div.classList.remove("lineThrough")
-                    checkedNum--
-                    localStorage.setItem("sec1 checked num", String(checkedNum))
-                }
-            }
-        })
-        
         div.append(h1)
-        checkBoxPlusDiv.append(checkboxInput, div)
-        
         if(price == "true"){
             let text = document.createElement("h1")
             text.classList.add("prices")
@@ -120,10 +79,10 @@ if(localStorage.getItem("sec1 saved") == "false"){
             text.textContent = `${days} days left`
             div.append(text)          
         }
-        mainDiv.append(checkBoxPlusDiv)
+        mainDiv.append(div)
     }
     
-    if(localStorage.getItem("sec1 boolean price") == "true"){
+    if(localStorage.getItem("sec3 boolean price") == "true"){
         let div = document.createElement("div")
         let divInputButton = document.createElement("div")
         let text = document.createElement("h1")
@@ -148,33 +107,33 @@ if(localStorage.getItem("sec1 saved") == "false"){
         completeBar.classList.add("completeBar")
         completed.classList.add("completed")
         
-        if(!localStorage.getItem("sec1 total")){
-            localStorage.setItem("sec1 total", "0")
+        if(!localStorage.getItem("sec3 total")){
+            localStorage.setItem("sec3 total", "0")
         }
         
-        if(!localStorage.getItem("sec1 percentage")){
-            localStorage.setItem("sec1 percentage", "0")
+        if(!localStorage.getItem("sec3 percentage")){
+            localStorage.setItem("sec3 percentage", "0")
         }
-        if(!localStorage.getItem("sec1 width")){
-            localStorage.setItem("sec1 width", "0")
-        }
-        
-        if(!localStorage.getItem("sec1 total sum")){
-            localStorage.setItem("sec1 total sum", "false")
+        if(!localStorage.getItem("sec3 width")){
+            localStorage.setItem("sec3 width", "0")
         }
         
-        if(localStorage.getItem("sec1 total sum") == "false"){
-            let total = Number(localStorage.getItem("sec1 total"))
+        if(!localStorage.getItem("sec3 total sum")){
+            localStorage.setItem("sec3 total sum", "false")
+        }
+        
+        if(localStorage.getItem("sec3 total sum") == "false"){
+            let total = Number(localStorage.getItem("sec3 total"))
             for(let i = 0; i < myPrices.length; i++){
                 total += Number(myPrices[i])
-                localStorage.setItem("sec1 total", total)
+                localStorage.setItem("sec3 total", total)
             }
-            localStorage.setItem("sec1 total sum", "true")
+            localStorage.setItem("sec3 total sum", "true")
         }
-        total = localStorage.getItem("sec1 total")
+        total = localStorage.getItem("sec3 total")
         text.textContent = `Total: ${total} AZN`
-        percent.textContent = `${localStorage.getItem("sec1 percentage")}%`
-        completed.style.width = `${localStorage.getItem("sec1 width")}px`
+        percent.textContent = `${localStorage.getItem("sec3 percentage")}%`
+        completed.style.width = `${localStorage.getItem("sec3 width")}px`
         
         input.classList.remove("shakeAnimation")
     
@@ -196,10 +155,10 @@ if(localStorage.getItem("sec1 saved") == "false"){
                 }else if(widthSize < 0){
                     widthSize = 0
                 }
-                localStorage.setItem("sec1 percentage", fullPercent)
-                localStorage.setItem("sec1 width", widthSize)
-                completed.style.width = `${localStorage.getItem("sec1 width")}px`
-                percent.textContent = `${localStorage.getItem("sec1 percentage")}%`
+                localStorage.setItem("sec3 percentage", fullPercent)
+                localStorage.setItem("sec3 width", widthSize)
+                completed.style.width = `${localStorage.getItem("sec3 width")}px`
+                percent.textContent = `${localStorage.getItem("sec3 percentage")}%`
             }
             input.value = ""
         })
@@ -208,6 +167,7 @@ if(localStorage.getItem("sec1 saved") == "false"){
         div.append(text)
         mainDiv.append(div, divInputButton, percent, completeBar)
     }
+    
 }
 button.addEventListener("click", ()=>{
     for(let i = 1; i<=taskNum; i++){
@@ -223,9 +183,9 @@ button.addEventListener("click", ()=>{
     console.log(prices);
     console.log(times);
     
-    localStorage.setItem("sec1 tasks", JSON.stringify(tasks))
-    localStorage.setItem("sec1 times", JSON.stringify(times))
-    localStorage.setItem("sec1 prices", JSON.stringify(prices))
-    localStorage.setItem("sec1 saved", "true")
+    localStorage.setItem("sec3 tasks", JSON.stringify(tasks))
+    localStorage.setItem("sec3 times", JSON.stringify(times))
+    localStorage.setItem("sec3 prices", JSON.stringify(prices))
+    localStorage.setItem("sec3 saved", "true")
     location.reload()
 })
