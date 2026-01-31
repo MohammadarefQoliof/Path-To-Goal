@@ -23,11 +23,10 @@ for(let i = 1; i<=5; i++){
             title = localStorage.getItem(`sec${i} title`)
             titleText.textContent = title
             
-            let checkedNum = localStorage.getItem(`sec${i} checked num`)
+            let checkedNum = Number(localStorage.getItem(`sec${i} checked num`))
             console.log(checkedNum);
             
-            let taskNum = localStorage.getItem(`sec${i} task number`)
-            console.log(taskNum);
+            let taskNum = Number(localStorage.getItem(`sec${i} task number`))
             let percent = (checkedNum * 100) / taskNum;
             let widthsize = (955 * percent) / 100
             overlay.style.width = `${widthsize}px`
@@ -37,7 +36,25 @@ for(let i = 1; i<=5; i++){
             div.append(titleText, overlay, percentText)
             btn.before(div)
         }else{
-            let percent = (955 * Number(localStorage.getItem(`sec${i} percentage`))) / 100
+            let div = document.createElement("div")
+            let overlay = document.createElement("div")
+            let titleText = document.createElement("p")
+            let percentText = document.createElement("p")
+            percentText.style.zIndex = "1"
+            
+            
+            div.classList.add("box")
+            overlay.classList.add("overlay2")
+            titleText.classList.add("titleText")
+        
+            titleText.addEventListener("click", ()=>{
+                window.location.href = `../HTML/sec${i}.html`
+            })
+            
+            title = localStorage.getItem(`sec${i} title`)
+            titleText.textContent = title
+            let percentage = Math.round(Number(localStorage.getItem(`sec${i} percentage`)));
+            let percent = Math.round((955 * percentage) / 100)
 
             if(percent > 955){
                 percent = 955
@@ -45,6 +62,7 @@ for(let i = 1; i<=5; i++){
                 percent = 0
             }
             overlay.style.width = `${percent}px`
+            percentText.textContent = `${percentage}%`
 
             div.append(titleText, overlay, percentText)
             btn.before(div)

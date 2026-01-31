@@ -14,22 +14,31 @@ button.textContent = "Save"
 if(!localStorage.getItem("sec4 saved")){
     localStorage.setItem("sec4 saved", "false")
 }
+if(!localStorage.getItem("sec4 checked num")){
+    localStorage.setItem("sec4 checked num", "0")
+}
 
 
 let tasks = []
 let prices = []
 let times = []
+if (!localStorage.getItem("sec4 checked")) {
+    let checkedBoxes = [];
+    for (let i = 0; i < taskNum; i++) {
+        checkedBoxes.push(false);
+    }
+    localStorage.setItem("sec4 checked", JSON.stringify(checkedBoxes));
+}
 if(localStorage.getItem("sec4 saved") == "false"){
     for(let i = 1; i<=taskNum; i++){
         let div = document.createElement("div")
-        div.style.height = "70px"
         let input = document.createElement("input")
+        div.style.height = "70px"
         input.id = `div${i}`
         input.classList.add("input")
         input.placeholder = `Task ${i}`
         input.maxLength = 12
         div.append(input)
-        
         if(price == "true"){
             let input = document.createElement("input")
             input.id = `price${i}`
@@ -44,11 +53,10 @@ if(localStorage.getItem("sec4 saved") == "false"){
             input.type = "date"
             input.classList.add("timeInput")
             div.append(input)
-            localStorage.setItem("sec4 times", times)
+            localStorage.setItem("sec4 times", JSON.stringify(times))
         }
-        localStorage.setItem("sec4 tasks", tasks)
-        mainDiv.append(div)
-        mainDiv.append(button)
+        localStorage.setItem("sec4 tasks", JSON.stringify(tasks))
+        mainDiv.append(div, button)
     }
 }else{
     button.remove()
@@ -57,12 +65,50 @@ if(localStorage.getItem("sec4 saved") == "false"){
     let myDate = JSON.parse(localStorage.getItem("sec4 times"));
     
     for(let i = 0; i<nameoftasks.length; i++){
+        let checkBoxPlusDiv = document.createElement("div")
+        let checkboxInput = document.createElement("input")
         let div = document.createElement("div")
         let h1 = document.createElement("h1")
+        
         h1.textContent = nameoftasks[i]
+        
+        checkBoxChecked = localStorage.getItem("sec4 checked num")
+        
+        checkboxInput.type = "checkbox"
+        
+        checkBoxPlusDiv.classList.add("checkBoxPlusDiv")
+        checkboxInput.classList.add("checkboxInput")
         div.classList.add("things")
         h1.classList.add("words")
+        
+        
+        
+        let checkedArr = JSON.parse(localStorage.getItem("sec4 checked")) || [];
+
+        let checkedNum = Number(localStorage.getItem("sec4 checked num"))
+
+        const isChecked = checkedArr[i] === true;
+
+        checkboxInput.checked = isChecked;
+        div.classList.toggle("lineThrough", isChecked);
+
+        checkboxInput.addEventListener("change", () => {
+            if (checkboxInput.checked){
+                checkedNum+=1
+                localStorage.setItem("sec4 checked num", checkedNum)
+            }
+            else{
+                checkedNum-=1
+                localStorage.setItem("sec4 checked num", checkedNum)
+            }
+            checkedArr[i] = checkboxInput.checked === true;
+            localStorage.setItem("sec4 checked", JSON.stringify(checkedArr));
+            div.classList.toggle("lineThrough", checkboxInput.checked);
+        });
+        
         div.append(h1)
+        checkBoxPlusDiv.append(checkboxInput, div)
+        
         if(price == "true"){
             let text = document.createElement("h1")
             text.classList.add("prices")
@@ -79,7 +125,7 @@ if(localStorage.getItem("sec4 saved") == "false"){
             text.textContent = `${days} days left`
             div.append(text)          
         }
-        mainDiv.append(div)
+        mainDiv.append(checkBoxPlusDiv)
     }
     
     if(localStorage.getItem("sec4 boolean price") == "true"){
@@ -167,7 +213,6 @@ if(localStorage.getItem("sec4 saved") == "false"){
         div.append(text)
         mainDiv.append(div, divInputButton, percent, completeBar)
     }
-    
 }
 button.addEventListener("click", ()=>{
     for(let i = 1; i<=taskNum; i++){
