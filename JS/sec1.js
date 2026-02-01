@@ -10,7 +10,6 @@ let button = document.createElement("div")
 button.classList.add("savebutton")
 button.textContent = "Save"
 
-
 if(!localStorage.getItem("sec1 saved")){
     localStorage.setItem("sec1 saved", "false")
 }

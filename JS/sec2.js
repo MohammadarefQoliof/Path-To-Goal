@@ -65,49 +65,47 @@ if(localStorage.getItem("sec2 saved") == "false"){
     let myDate = JSON.parse(localStorage.getItem("sec2 times"));
     
     for(let i = 0; i<nameoftasks.length; i++){
-        let checkBoxPlusDiv = document.createElement("div")
-        let checkboxInput = document.createElement("input")
         let div = document.createElement("div")
         let h1 = document.createElement("h1")
         
         h1.textContent = nameoftasks[i]
         
-        checkBoxChecked = localStorage.getItem("sec2 checked num")
-        
-        checkboxInput.type = "checkbox"
-        
+        let checkBoxPlusDiv = document.createElement("div")
         checkBoxPlusDiv.classList.add("checkBoxPlusDiv")
-        checkboxInput.classList.add("checkboxInput")
+        
         div.classList.add("things")
         h1.classList.add("words")
-        
-        
-        
-        let checkedArr = JSON.parse(localStorage.getItem("sec2 checked")) || [];
-
-        let checkedNum = Number(localStorage.getItem("sec2 checked num"))
-
-        const isChecked = checkedArr[i] === true;
-
-        checkboxInput.checked = isChecked;
-        div.classList.toggle("lineThrough", isChecked);
-
-        checkboxInput.addEventListener("change", () => {
-            if (checkboxInput.checked){
-                checkedNum+=1
-                localStorage.setItem("sec2 checked num", checkedNum)
-            }
-            else{
-                checkedNum-=1
-                localStorage.setItem("sec2 checked num", checkedNum)
-            }
-            checkedArr[i] = checkboxInput.checked === true;
-            localStorage.setItem("sec2 checked", JSON.stringify(checkedArr));
-            div.classList.toggle("lineThrough", checkboxInput.checked);
-        });
-        
         div.append(h1)
-        checkBoxPlusDiv.append(checkboxInput, div)
+        checkBoxPlusDiv.append(div)
+        mainDiv.append(checkBoxPlusDiv)
+
+        if(price == "false"){
+            let checkboxInput = document.createElement("input")
+            checkBoxChecked = localStorage.getItem("sec2 checked num")
+            checkboxInput.type = "checkbox"
+            checkboxInput.classList.add("checkboxInput")
+            let checkedArr = JSON.parse(localStorage.getItem("sec2 checked")) || [];
+            let checkedNum = Number(localStorage.getItem("sec2 checked num"))
+            let isChecked = checkedArr[i] === true;
+            checkboxInput.checked = isChecked;
+            div.classList.toggle("lineThrough", isChecked);
+            checkboxInput.addEventListener("change", () => {
+                if (checkboxInput.checked){
+                    checkedNum+=1
+                    localStorage.setItem("sec2 checked num", checkedNum)
+                }
+                else{
+                    checkedNum-=1
+                    localStorage.setItem("sec2 checked num", checkedNum)
+                }
+                checkedArr[i] = checkboxInput.checked === true;
+                localStorage.setItem("sec2 checked", JSON.stringify(checkedArr));
+                div.classList.toggle("lineThrough", checkboxInput.checked);
+            });
+            
+            checkBoxPlusDiv.append(checkboxInput, div)
+            mainDiv.append(checkBoxPlusDiv)
+        }
         
         if(price == "true"){
             let text = document.createElement("h1")
@@ -125,10 +123,9 @@ if(localStorage.getItem("sec2 saved") == "false"){
             text.textContent = `${days} days left`
             div.append(text)          
         }
-        mainDiv.append(checkBoxPlusDiv)
     }
     
-    if(localStorage.getItem("sec2 boolean price") == "true"){
+    if(price == "true"){
         let div = document.createElement("div")
         let divInputButton = document.createElement("div")
         let text = document.createElement("h1")
