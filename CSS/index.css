@@ -131,7 +131,7 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../IMAGES/rightArrow.png");
+    background-image: url("../IMAGES/arrowImage.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -144,7 +144,24 @@ body{
     transform: translateX(0);
     opacity: 1;
 }
-
+.removeBtn{
+    width: 80px;
+    height: 27px;
+    border-radius: 25px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    right: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 100;
+}
+.removeBtn:hover{
+    background-color: lightcoral;
+}
 
 @keyframes shake{
     0%{

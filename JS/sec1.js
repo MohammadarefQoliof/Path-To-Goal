@@ -36,7 +36,6 @@ if(localStorage.getItem("sec1 saved") == "false"){
         input.id = `div${i}`
         input.classList.add("input")
         input.placeholder = `Task ${i}`
-        input.maxLength = 12
         div.append(input)
         if(price == "true"){
             let input = document.createElement("input")
@@ -135,7 +134,6 @@ if(localStorage.getItem("sec1 saved") == "false"){
         let completed = document.createElement("div")
     
         input.type = "text"
-        input.maxLength = 5
         input.placeholder = "Current balance"
     
         confrimButton.textContent = "NEXT"
