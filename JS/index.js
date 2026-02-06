@@ -36,47 +36,38 @@ for(let i = 1; i<=5; i++){
             let widthsize = (961 * percent) / 100
             overlay.style.width = `${widthsize}px`
             percentText.textContent = `${percent}%`
-            
-            remove.addEventListener("click", ()=>{
-                let no1 = localStorage.getItem(`sec${i} boolean price`)
-                let no2 = localStorage.getItem(`sec${i} boolean time`)
-                let no3 = localStorage.getItem(`sec${i} checked`)
-                let no4 = localStorage.getItem(`sec${i} checked num`)
-                let no5 = localStorage.getItem(`sec${i} prices`)
-                let no6 = localStorage.getItem(`sec${i} saved`)
-                let no7 = localStorage.getItem(`sec${i} task number`)
-                let no8 = localStorage.getItem(`sec${i} tasks`)
-                let no9 = localStorage.getItem(`sec${i} times`)
-                let no10 = localStorage.getItem(`sec${i} title`)
-                localStorage.removeItem(`sec${i} boolean price`)
-                localStorage.removeItem(`sec${i} boolean time`)
-                localStorage.removeItem(`sec${i} checked`)
-                localStorage.removeItem(`sec${i} checked num`)
-                localStorage.removeItem(`sec${i} prices`)
-                localStorage.removeItem(`sec${i} saved`)
-                localStorage.removeItem(`sec${i} task number`)
-                localStorage.removeItem(`sec${i} tasks`)
-                localStorage.removeItem(`sec${i} times`)
-                localStorage.removeItem(`sec${i} title`)
-                if(i != 5 && htmlNum != 1){
-                    localStorage.setItem(`sec${i + 1} boolean price`, no1)
-                    localStorage.setItem(`sec${i + 1} boolean time`, no2)
-                    localStorage.setItem(`sec${i + 1} checked`, no3)
-                    localStorage.setItem(`sec${i + 1} checked num`, no4)
-                    localStorage.setItem(`sec${i + 1} prices`, no5)
-                    localStorage.setItem(`sec${i + 1} saved`, no6)
-                    localStorage.setItem(`sec${i + 1} task number`, no7)
-                    localStorage.setItem(`sec${i + 1} tasks`, no8)
-                    localStorage.setItem(`sec${i + 1} times`, no9)
-                    localStorage.setItem(`sec${i + 1} title`, no10)
-                }
-                htmlNum -= 1
-                localStorage.setItem("htmlNum", htmlNum)
-                location.reload()
-            })
 
             div.append(titleText, overlay, remove, percentText)
             btn.before(div)
+            
+            remove.addEventListener("click", () => {
+                const keys = [
+                    "boolean price",
+                    "boolean time",
+                    "checked",
+                    "checked num",
+                    "prices",
+                    "saved",
+                    "task number",
+                    "tasks",
+                    "times",
+                    "title"
+                ];
+                keys.forEach(k => {
+                    localStorage.removeItem(`sec${i} ${k}`);
+                });
+                for (let j = i + 1; j <= htmlNum; j++) {
+                    keys.forEach(k => {
+                        let value = localStorage.getItem(`sec${j} ${k}`);
+                        localStorage.setItem(`sec${j - 1} ${k}`, value);
+                        localStorage.removeItem(`sec${j} ${k}`);
+                    });
+                }
+                htmlNum -= 1;
+                localStorage.setItem("htmlNum", htmlNum);
+                location.reload();
+            });
+
         }else{
             let div = document.createElement("div")
             let overlay = document.createElement("div")
@@ -109,17 +100,11 @@ for(let i = 1; i<=5; i++){
             overlay.style.width = `${percent}px`
             percentText.textContent = `${percentage}%`
 
+            div.append(titleText, overlay, remove, percentText)
+            btn.before(div)
+
+
             remove.addEventListener("click", ()=>{
-                let no1 = localStorage.getItem(`sec${i} boolean price`)
-                let no2 = localStorage.getItem(`sec${i} boolean time`)
-                let no3 = localStorage.getItem(`sec${i} checked`)
-                let no4 = localStorage.getItem(`sec${i} checked num`)
-                let no5 = localStorage.getItem(`sec${i} prices`)
-                let no6 = localStorage.getItem(`sec${i} saved`)
-                let no7 = localStorage.getItem(`sec${i} task number`)
-                let no8 = localStorage.getItem(`sec${i} tasks`)
-                let no9 = localStorage.getItem(`sec${i} times`)
-                let no10 = localStorage.getItem(`sec${i} title`)
                 localStorage.removeItem(`sec${i} boolean price`)
                 localStorage.removeItem(`sec${i} boolean time`)
                 localStorage.removeItem(`sec${i} checked`)
@@ -131,24 +116,31 @@ for(let i = 1; i<=5; i++){
                 localStorage.removeItem(`sec${i} times`)
                 localStorage.removeItem(`sec${i} title`)
                 if(i != 5 && htmlNum != 1){
-                    localStorage.setItem(`sec${i + 1} boolean price`, no1)
-                    localStorage.setItem(`sec${i + 1} boolean time`, no2)
-                    localStorage.setItem(`sec${i + 1} checked`, no3)
-                    localStorage.setItem(`sec${i + 1} checked num`, no4)
-                    localStorage.setItem(`sec${i + 1} prices`, no5)
-                    localStorage.setItem(`sec${i + 1} saved`, no6)
-                    localStorage.setItem(`sec${i + 1} task number`, no7)
-                    localStorage.setItem(`sec${i + 1} tasks`, no8)
-                    localStorage.setItem(`sec${i + 1} times`, no9)
-                    localStorage.setItem(`sec${i + 1} title`, no10)
+                    let no1 = localStorage.getItem(`sec${i + 1} boolean price`)
+                    let no2 = localStorage.getItem(`sec${i + 1} boolean time`)
+                    let no3 = localStorage.getItem(`sec${i + 1} checked`)
+                    let no4 = localStorage.getItem(`sec${i + 1} checked num`)
+                    let no5 = localStorage.getItem(`sec${i + 1} prices`)
+                    let no6 = localStorage.getItem(`sec${i + 1} saved`)
+                    let no7 = localStorage.getItem(`sec${i + 1} task number`)
+                    let no8 = localStorage.getItem(`sec${i + 1} tasks`)
+                    let no9 = localStorage.getItem(`sec${i + 1} times`)
+                    let no10 = localStorage.getItem(`sec${i + 1} title`)
+                    localStorage.setItem(`sec${i} boolean price`, no1)
+                    localStorage.setItem(`sec${i} boolean time`, no2)
+                    localStorage.setItem(`sec${i} checked`, no3)
+                    localStorage.setItem(`sec${i} checked num`, no4)
+                    localStorage.setItem(`sec${i} prices`, no5)
+                    localStorage.setItem(`sec${i} saved`, no6)
+                    localStorage.setItem(`sec${i} task number`, no7)
+                    localStorage.setItem(`sec${i} tasks`, no8)
+                    localStorage.setItem(`sec${i} times`, no9)
+                    localStorage.setItem(`sec${i} title`, no10)
                 }
                 htmlNum -= 1
                 localStorage.setItem("htmlNum", htmlNum)
                 location.reload()
             })
-            
-            div.append(titleText, overlay, remove, percentText)
-            btn.before(div)
         }
     }
     
