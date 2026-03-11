@@ -1,0 +1,227 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#main{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    margin: 60px;
+}
+h1{
+    font-size: 45px;
+    cursor: default;
+}
+#topWord{
+    font-size: 20px;
+    font-weight: 100;
+    color: grey;
+    cursor: default;
+}
+#newPlanBtn{
+    position: relative;
+    top: 10px;
+    width: 150px;
+    height: 70px;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 2px solid black;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#newPlanBtn:hover{
+    transform: translateY(-3px);
+}
+.mainDiv{
+    width: 700px;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.p1{
+    font-size: 21px;
+    font-weight: 450;
+    margin: 5px;
+}
+.p2{
+    color: grey;
+    font-size: 17px;
+}
+.icon{
+    width: 80px;
+    height: 80px;
+}
+.overlay{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.inputDiv{
+    width: 450px;
+    height: 300px;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: white;
+    animation: scaleAnimate 0.3s forwards;
+}
+@keyframes scaleAnimate {
+    from{
+        transform: scale(0.8);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+.cross{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-weight: 100;
+    cursor: pointer;
+}
+.animate{
+    animation: closePage 0.17s forwards;
+}
+@keyframes closePage {
+    to{
+        transform: scale(0.9);
+        opacity: 0;
+    }
+}
+.topic{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 50px 0;
+}
+.titleInput{
+    width: 95%;
+    height: 30px;
+    border-radius: 20px;
+    margin: 12px 0;
+    padding: 30px 20px;
+    font-size: 20px;
+    outline: white;
+    border: 2px solid grey;
+}
+.cancel{
+    width: 120px;
+    height: 35px;
+    position: absolute;
+    right: 170px;
+    bottom: 30px;
+    background-color: white;
+    border: 2px solid white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.save{
+    cursor: pointer;
+    font-size: 15px;
+    width: 120px;
+    height: 35px;
+    position: absolute;
+    right: 35px;
+    bottom: 30px;
+    background-color: black;
+    color: white;
+    font-weight: 600;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.myDiv{
+    width: 700px;
+    border-radius: 20px;
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+}
+.card{
+    width: 700px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    margin: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.card:hover{
+    transform: scale(1.03);
+    box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+}
+.card:hover .arrow{
+    animation: rightMove 0.17s forwards;
+}
+.title{
+    font-size: 20px;
+    margin: 15px;
+}
+.arrow{
+    height: 20px;
+    width: 20px;
+    background-image: url("../images/arrow.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+@keyframes rightMove {
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(4px);
+    }
+}
+.binIcon{
+    height: 20px;
+    width: 20px;
+    background-image: url("../images/trash.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    top: -10px;
+}
+.binIcon:hover{
+    background-image: url("../images/redTrash.png");
+}
+.binAndArrow{
+    width: 50px;
+    display: flex;
+    gap: 5px;
+    margin: 30px 20px;
+}
+.percentOverlay{
+    width: 90%;
+    height: 10px;
+    border-radius: 5px;
+    background-color: grey;
+    z-index: 1;
+    margin: 0 0 40px 30px;
+}
+.percentcolor{
+    height: 10px;
+    z-index: 0;
+}
