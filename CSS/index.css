@@ -8,7 +8,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
 }
 #main{
     width: 45%;
@@ -175,6 +175,8 @@ h1{
     animation: rightMove 0.17s forwards;
 }
 .title{
+    width: 82%;
+    height: max-content;
     font-size: 20px;
     margin: 15px;
 }
@@ -185,6 +187,8 @@ h1{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+    top: 10px;
 }
 @keyframes rightMove {
     from{
@@ -202,7 +206,7 @@ h1{
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    top: -10px;
+    top: 5px;
 }
 .binIcon:hover{
     background-image: url("../images/redTrash.png");
@@ -211,17 +215,26 @@ h1{
     width: 50px;
     display: flex;
     gap: 5px;
-    margin: 30px 20px;
+    margin: 20px 20px;
 }
 .percentOverlay{
-    width: 90%;
+    width: 95%;
     height: 10px;
     border-radius: 5px;
-    background-color: grey;
-    z-index: 1;
-    margin: 0 0 40px 30px;
+    background-color: #F4F4F5;
+    z-index: 0;
+    position: relative;
+    bottom: 10px;
+    left: 15px;
 }
 .percentcolor{
     height: 10px;
-    z-index: 0;
+    z-index: -1;
+}
+.percentText{
+    font-size: 12px;
+    margin: 0 18px;
+    position: relative;
+    bottom: 10px;
+    color: #71717A;
 }

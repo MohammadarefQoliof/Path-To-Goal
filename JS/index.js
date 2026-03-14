@@ -37,20 +37,22 @@ if(pageNum == 0 || !pageNum){
         let binAndArrow = document.createElement("div")
         let percentOverlay = document.createElement("div")
         let percentcolor = document.createElement("div")
+        let percentText = document.createElement("p")
 
-        
+        percentText.textContent = "15%"
         titleShow.textContent = planTitle
-        
+
+        percentText.classList.add("percentText")
         percentOverlay.classList.add("percentOverlay")
         percentcolor.classList.add("percentcolor")
         arrow.classList.add("arrow")
         binAndArrow.classList.add("binAndArrow")
         binIcon.classList.add("binIcon")
         card.classList.add("card")
-        titleShow.classList.add("title")
+        titleShow.classList.add("title")    
 
         binAndArrow.append(binIcon, arrow)
-        card.append(titleShow, binAndArrow, percentcolor, percentOverlay)
+        card.append(titleShow, binAndArrow, percentcolor,percentText, percentOverlay)
         body.append(card)
     }
 }
