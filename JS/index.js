@@ -49,7 +49,11 @@ if(pageNum == 0 || !pageNum){
         binAndArrow.classList.add("binAndArrow")
         binIcon.classList.add("binIcon")
         card.classList.add("card")
-        titleShow.classList.add("title")    
+        titleShow.classList.add("title")
+        
+        card.addEventListener("click", ()=>{
+            window.location.href = `../HTML/sec${i}.html`
+        })
 
         binAndArrow.append(binIcon, arrow)
         card.append(titleShow, binAndArrow, percentcolor,percentText, percentOverlay)
@@ -58,60 +62,68 @@ if(pageNum == 0 || !pageNum){
 }
 
 let newPlan = document.querySelector("button")
-newPlan.addEventListener("click", ()=>{
-    let body = document.querySelector("body")
-    let overlay = document.createElement("div")
-    let inputDiv = document.createElement("div")
-    let cross = document.createElement("img")
-    let topic = document.createElement("h1")
-    let titleText = document.createElement("p")
-    let input = document.createElement("input")
-    let cancel = document.createElement("button")
-    let save = document.createElement("button")
-
-    input.placeholder = "e.g. Summer Vacation"
-
-    cancel.textContent = "Cancel"
-    save.textContent = "Save Plan"
-    topic.textContent = "Create a new plan"
-    titleText.textContent = "Plan Title"
-    cross.src = "../images/cross.png"
-
-    cross.addEventListener("mouseout", ()=>{
+if(pageNum >= 5){
+    newPlan.classList.remove("newPlanBtn")
+    newPlan.classList.add("setMax")
+    newPlan.innerHTML =  `+ &nbsp; New Plan (Max 5)`
+}else{
+    newPlan.classList.add("newPlanBtn")
+    newPlan.classList.remove("setMax")
+    newPlan.addEventListener("click", ()=>{
+        let body = document.querySelector("body")
+        let overlay = document.createElement("div")
+        let inputDiv = document.createElement("div")
+        let cross = document.createElement("img")
+        let topic = document.createElement("h1")
+        let titleText = document.createElement("p")
+        let input = document.createElement("input")
+        let cancel = document.createElement("button")
+        let save = document.createElement("button")
+    
+        input.placeholder = "e.g. Summer Vacation"
+    
+        cancel.textContent = "Cancel"
+        save.textContent = "Save Plan"
+        topic.textContent = "Create a new plan"
+        titleText.textContent = "Plan Title"
         cross.src = "../images/cross.png"
-    })
-    cross.addEventListener("mouseover", ()=>{
-        cross.src = "../images/close.png"
-    })
-    cross.addEventListener("click", ()=>{
-        inputDiv.classList.add("animate")
-        overlay.addEventListener("animationend", ()=>{
-            overlay.remove()
+    
+        cross.addEventListener("mouseout", ()=>{
+            cross.src = "../images/cross.png"
         })
-    })
-    cancel.addEventListener("click", ()=>{
-        inputDiv.classList.add("animate")
-        overlay.addEventListener("animationend", ()=>{
-            overlay.remove()
+        cross.addEventListener("mouseover", ()=>{
+            cross.src = "../images/close.png"
         })
+        cross.addEventListener("click", ()=>{
+            inputDiv.classList.add("animate")
+            overlay.addEventListener("animationend", ()=>{
+                overlay.remove()
+            })
+        })
+        cancel.addEventListener("click", ()=>{
+            inputDiv.classList.add("animate")
+            overlay.addEventListener("animationend", ()=>{
+                overlay.remove()
+            })
+        })
+        save.addEventListener("click", ()=>{
+            pageNum++;
+            localStorage.setItem("pageNum", pageNum)
+            localStorage.setItem(`title${pageNum}`, input.value)
+            location.reload()
+        })
+    
+        cross.classList.add("cross")
+        cancel.classList.add("cancel")
+        save.classList.add("save")
+        input.classList.add("titleInput")
+        topic.classList.add("topic")
+        inputDiv.classList.add("inputDiv")
+        overlay.classList.add("overlay")
+        titleText.classList.add("titleText")
+    
+        inputDiv.append(cross, topic, titleText, input, cancel, save)
+        overlay.append(inputDiv)
+        body.append(overlay)
     })
-    save.addEventListener("click", ()=>{
-        pageNum++;
-        localStorage.setItem("pageNum", pageNum)
-        localStorage.setItem(`title${pageNum}`, input.value)
-        location.reload()
-    })
-
-    cross.classList.add("cross")
-    cancel.classList.add("cancel")
-    save.classList.add("save")
-    input.classList.add("titleInput")
-    topic.classList.add("topic")
-    inputDiv.classList.add("inputDiv")
-    overlay.classList.add("overlay")
-    titleText.classList.add("titleText")
-
-    inputDiv.append(cross, topic, titleText, input, cancel, save)
-    overlay.append(inputDiv)
-    body.append(overlay)
-})
+}

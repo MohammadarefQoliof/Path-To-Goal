@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 body{
-    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -14,7 +13,7 @@ body{
     width: 45%;
     display: flex;
     justify-content: space-between;
-    margin: 60px;
+    margin: 50px;
 }
 h1{
     font-size: 45px;
@@ -26,7 +25,7 @@ h1{
     color: grey;
     cursor: default;
 }
-#newPlanBtn{
+.newPlanBtn{
     position: relative;
     top: 10px;
     width: 150px;
@@ -40,7 +39,7 @@ h1{
     transition: 0.3s;
     cursor: pointer;
 }
-#newPlanBtn:hover{
+.newPlanBtn:hover{
     transform: translateY(-3px);
 }
 .mainDiv{
@@ -179,6 +178,7 @@ h1{
     height: max-content;
     font-size: 20px;
     margin: 15px;
+    font-weight: 700;
 }
 .arrow{
     height: 20px;
@@ -237,4 +237,17 @@ h1{
     position: relative;
     bottom: 10px;
     color: #71717A;
+}
+.setMax{
+    position: relative;
+    top: 10px;
+    width: 230px;
+    height: 70px;
+    background-color: grey;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    border: 2px solid grey;
+    cursor: default;
 }
