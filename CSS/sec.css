@@ -201,8 +201,55 @@ body{
     position: relative;
     left: 5px;
 }
-.card{
-    width: 80%;
+.backgroundCard{
+    width: 700px;
     height: 100px;
-    background-color: black;
+    border-radius: 18px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    padding: 5px 20px;
+    flex-direction: column;
+    cursor: pointer;
+}
+.card{
+    width: 95%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 20px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+    transition: 0.4s;
+}
+.card:hover{
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.3);
+}
+.bin{
+    width: 20px;
+    height: 20px;
+    background-image: url("../images/trash.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: 0.2s;
+}
+.card:hover .bin{
+    opacity: 1;
+}
+.bin:hover{
+    background-image: url("../images/redTrash.png");
+}
+.titleAndPrice{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.sumText{
+    font-size: 15px;
+    padding: 0 5px;
+    color: grey;
 }

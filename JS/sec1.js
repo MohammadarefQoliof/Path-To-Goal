@@ -1,4 +1,8 @@
 let backtoplan = document.querySelector(".backtoplan");
+let titles = localStorage.getItem("titles");
+if(!titles){
+    localStorage.setItem("titles", JSON.stringify([]));
+}
 let mainDiv;
 backtoplan.addEventListener("click", ()=>{
     window.location.href = "../index.html";
@@ -28,18 +32,67 @@ if(sec1TaskNum <= 0 || !sec1TaskNum){
     
     mainDiv.append(icon, p1, p2)
     body.append(mainDiv)
-}
-else{
+}else{
     let card;
+    let backgroundCard = document.createElement("div")
     let body = document.querySelector("body")
+    backgroundCard.classList.add("backgroundCard")
     if(mainDiv){
         mainDiv.remove()
     }
-    for(let i = 1; i<=pageNum; i++){
+    for(let i = 1; i<=sec1TaskNum; i++){
         card = document.createElement("div")
+        let titleShow = document.createElement("p")
+        let bin = document.createElement("div")
+        let priceType = document.createElement("p")
+        let dateType = document.createElement("p")
+        let titleAndPrice = document.createElement("div")
+
+        
+        titleShow.textContent = JSON.parse(localStorage.getItem("titles"))[i-1]
+        if(JSON.parse(localStorage.getItem("price"))[i-1] == ""){
+            priceType.textContent = ""
+        }else{
+            priceType.textContent = `(${JSON.parse(localStorage.getItem("price"))[i-1]})`
+            priceType.style.color = "grey"
+        }
+        if(JSON.parse(localStorage.getItem("date"))[i-1] == ""){
+            dateType.textContent = ""
+        }else{
+            dateType.textContent = `(${JSON.parse(localStorage.getItem("date"))[i-1]})`
+            dateType.style.color = "grey"
+        }
+
+        backgroundCard.style.height = `${backgroundCard.offsetHeight + 73}px`
+        
         card.classList.add("card")
-        body.append(card)
+        bin.classList.add("bin")
+        titleAndPrice.classList.add("titleAndPrice")
+
+        bin.addEventListener("click", ()=>{
+            let titlesList = JSON.parse(localStorage.getItem("titles")) || [];
+            let priceList = JSON.parse(localStorage.getItem("price")) || [];
+            let dateList = JSON.parse(localStorage.getItem("date")) || [];
+            sec1TaskNum--;
+            titlesList.splice(i-1, 1)
+            priceList.splice(i-1, 1)
+            dateList.splice(i-1, 1)
+            localStorage.setItem("sec1TaskNum", sec1TaskNum)
+            localStorage.setItem("titles", JSON.stringify(titlesList))
+            localStorage.setItem("price", JSON.stringify(priceList))
+            localStorage.setItem("date", JSON.stringify(dateList))
+            location.reload()
+        })
+        
+        backgroundCard.append(card)
+        titleAndPrice.append(titleShow, priceType, dateType)
+        card.append(titleAndPrice, bin)
+        body.append(backgroundCard)
     }
+    let sumText = document.querySelector(".sumText")
+    let priceList = JSON.parse(localStorage.getItem("price")) || [];
+    let total = priceList.reduce((acc, curr)=> acc + Number(curr), 0).toFixed(2)
+    sumText.textContent = `Total: ${total}`
 }
 
 let newTask = document.querySelector(".newTaskBtn")
@@ -90,7 +143,21 @@ newTask.addEventListener("click", ()=>{
     })
     save.addEventListener("click", ()=>{
         sec1TaskNum++;
+        let titleValue = input.value;
+        let priceValue = input2.value;
+        let dateValue = input3.value;
+        let titlesList = JSON.parse(localStorage.getItem("titles")) || [];
+        let priceList = JSON.parse(localStorage.getItem("price")) || [];
+        let dateList = JSON.parse(localStorage.getItem("date")) || [];
+        console.log(titlesList);
+        
+        titlesList.push(titleValue);
+        priceList.push(priceValue);
+        dateList.push(dateValue);
         localStorage.setItem("sec1TaskNum", sec1TaskNum)
+        localStorage.setItem("titles", JSON.stringify(titlesList))
+        localStorage.setItem("price", JSON.stringify(priceList))
+        localStorage.setItem("date", JSON.stringify(dateList))
         location.reload()
     })
 
