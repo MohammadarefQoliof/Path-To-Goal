@@ -52,7 +52,7 @@ if(pageNum == 0 || !pageNum){
         titleShow.classList.add("title")
         
         card.addEventListener("click", ()=>{
-            window.location.href = `HTML/sec${i}.html`
+            window.location.href = `/Path-To-Goal/HTML/sec${i}.html`
         })
 
         binAndArrow.append(binIcon, arrow)
