@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    cursor: url("../images/cursor.png"), auto;
 }
 body{
     display: flex;
@@ -17,13 +18,11 @@ body{
 }
 h1{
     font-size: 45px;
-    cursor: default;
 }
 #topWord{
     font-size: 20px;
     font-weight: 100;
     color: grey;
-    cursor: default;
 }
 .newPlanBtn{
     position: relative;
@@ -37,7 +36,7 @@ h1{
     font-weight: 500;
     border: 2px solid black;
     transition: 0.3s;
-    cursor: pointer;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .newPlanBtn:hover{
     transform: translateY(-3px);
@@ -97,7 +96,7 @@ h1{
     right: 15px;
     top: 15px;
     font-weight: 100;
-    cursor: pointer;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .animate{
     animation: closePage 0.17s forwards;
@@ -132,10 +131,10 @@ h1{
     background-color: white;
     border: 2px solid white;
     font-size: 15px;
-    cursor: pointer;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .save{
-    cursor: pointer;
+    cursor: url("../images/pointerCursor.png"), auto;
     font-size: 15px;
     width: 120px;
     height: 35px;
@@ -163,7 +162,7 @@ h1{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    cursor: pointer;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .card:hover{
     transform: scale(1.03);
@@ -173,6 +172,7 @@ h1{
     animation: rightMove 0.17s forwards;
 }
 .title{
+    cursor: url("../images/pointerCursor.png"), auto;
     width: 82%;
     height: max-content;
     font-size: 20px;
@@ -188,6 +188,7 @@ h1{
     background-repeat: no-repeat;
     position: relative;
     top: 10px;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 @keyframes rightMove {
     from{
@@ -206,11 +207,13 @@ h1{
     background-repeat: no-repeat;
     position: relative;
     top: 5px;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .binIcon:hover{
     background-image: url("../images/redTrash.png");
 }
 .binAndArrow{
+    cursor: url("../images/pointerCursor.png"), auto;
     width: 50px;
     display: flex;
     gap: 5px;
@@ -220,11 +223,12 @@ h1{
     width: 95%;
     height: 10px;
     border-radius: 5px;
-    background-color: #F4F4F5;
+    background-color: grey;
     z-index: 0;
     position: relative;
     bottom: 10px;
     left: 15px;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .percentcolor{
     height: 10px;
@@ -236,6 +240,7 @@ h1{
     position: relative;
     bottom: 10px;
     color: #71717A;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .setMax{
     position: relative;
@@ -248,5 +253,4 @@ h1{
     font-size: 20px;
     font-weight: 500;
     border: 2px solid grey;
-    cursor: default;
 }

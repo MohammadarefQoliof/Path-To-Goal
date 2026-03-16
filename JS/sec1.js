@@ -1,7 +1,7 @@
 let backtoplan = document.querySelector(".backtoplan");
-let titles = localStorage.getItem("titles");
+let titles = localStorage.getItem("sec1Titles");
 if(!titles){
-    localStorage.setItem("titles", JSON.stringify([]));
+    localStorage.setItem("sec1Titles", JSON.stringify([]));
 }
 let mainDiv;
 backtoplan.addEventListener("click", ()=>{
@@ -49,17 +49,17 @@ if(sec1TaskNum <= 0 || !sec1TaskNum){
         let titleAndPrice = document.createElement("div")
 
         
-        titleShow.textContent = JSON.parse(localStorage.getItem("titles"))[i-1]
-        if(JSON.parse(localStorage.getItem("price"))[i-1] == ""){
+        titleShow.textContent = JSON.parse(localStorage.getItem("sec1Titles"))[i-1]
+        if(JSON.parse(localStorage.getItem("sec1Price"))[i-1] == ""){
             priceType.textContent = ""
         }else{
-            priceType.textContent = `(${JSON.parse(localStorage.getItem("price"))[i-1]})`
+            priceType.textContent = `(${JSON.parse(localStorage.getItem("sec1Price"))[i-1]})`
             priceType.style.color = "grey"
         }
-        if(JSON.parse(localStorage.getItem("date"))[i-1] == ""){
+        if(JSON.parse(localStorage.getItem("sec1Date"))[i-1] == ""){
             dateType.textContent = ""
         }else{
-            dateType.textContent = `(${JSON.parse(localStorage.getItem("date"))[i-1]})`
+            dateType.textContent = `(${JSON.parse(localStorage.getItem("sec1Date"))[i-1]})`
             dateType.style.color = "grey"
         }
 
@@ -70,17 +70,17 @@ if(sec1TaskNum <= 0 || !sec1TaskNum){
         titleAndPrice.classList.add("titleAndPrice")
 
         bin.addEventListener("click", ()=>{
-            let titlesList = JSON.parse(localStorage.getItem("titles")) || [];
-            let priceList = JSON.parse(localStorage.getItem("price")) || [];
-            let dateList = JSON.parse(localStorage.getItem("date")) || [];
+            let titlesList = JSON.parse(localStorage.getItem("sec1Titles")) || [];
+            let priceList = JSON.parse(localStorage.getItem("sec1Price")) || [];
+            let dateList = JSON.parse(localStorage.getItem("sec1Date")) || [];
             sec1TaskNum--;
             titlesList.splice(i-1, 1)
             priceList.splice(i-1, 1)
             dateList.splice(i-1, 1)
             localStorage.setItem("sec1TaskNum", sec1TaskNum)
-            localStorage.setItem("titles", JSON.stringify(titlesList))
-            localStorage.setItem("price", JSON.stringify(priceList))
-            localStorage.setItem("date", JSON.stringify(dateList))
+            localStorage.setItem("sec1Titles", JSON.stringify(titlesList))
+            localStorage.setItem("sec1Price", JSON.stringify(priceList))
+            localStorage.setItem("sec1Date", JSON.stringify(dateList))
             location.reload()
         })
         
@@ -90,9 +90,10 @@ if(sec1TaskNum <= 0 || !sec1TaskNum){
         body.append(backgroundCard)
     }
     let sumText = document.querySelector(".sumText")
-    let priceList = JSON.parse(localStorage.getItem("price")) || [];
+    let priceList = JSON.parse(localStorage.getItem("sec1Price")) || [];
     let total = priceList.reduce((acc, curr)=> acc + Number(curr), 0).toFixed(2)
     sumText.textContent = `Total: ${total}`
+    localStorage.setItem("sec1Total", total)
 }
 
 let newTask = document.querySelector(".newTaskBtn")
@@ -146,18 +147,18 @@ newTask.addEventListener("click", ()=>{
         let titleValue = input.value;
         let priceValue = input2.value;
         let dateValue = input3.value;
-        let titlesList = JSON.parse(localStorage.getItem("titles")) || [];
-        let priceList = JSON.parse(localStorage.getItem("price")) || [];
-        let dateList = JSON.parse(localStorage.getItem("date")) || [];
+        let titlesList = JSON.parse(localStorage.getItem("sec1Titles")) || [];
+        let priceList = JSON.parse(localStorage.getItem("sec1Price")) || [];
+        let dateList = JSON.parse(localStorage.getItem("sec1Date")) || [];
         console.log(titlesList);
         
         titlesList.push(titleValue);
         priceList.push(priceValue);
         dateList.push(dateValue);
         localStorage.setItem("sec1TaskNum", sec1TaskNum)
-        localStorage.setItem("titles", JSON.stringify(titlesList))
-        localStorage.setItem("price", JSON.stringify(priceList))
-        localStorage.setItem("date", JSON.stringify(dateList))
+        localStorage.setItem("sec1Titles", JSON.stringify(titlesList))
+        localStorage.setItem("sec1Price", JSON.stringify(priceList))
+        localStorage.setItem("sec1Date", JSON.stringify(dateList))
         location.reload()
     })
 
@@ -177,4 +178,39 @@ newTask.addEventListener("click", ()=>{
     inputDiv.append(cross, topic, titleText, input, titleText2, input2, titleText3, input3, cancel, save)
     overlayTask.append(inputDiv)
     body.append(overlayTask)
+})
+
+
+let walletInput = document.querySelector(".walletInput")
+let onTheOverlay = document.querySelector(".onTheOverlay")
+let percentageText = document.querySelector(".percentage")
+
+function updateBar() {
+    let wallet = Number(walletInput.value) || 0
+
+    let sec1TaskNum = Number(localStorage.getItem("sec1TaskNum")) || 0
+    let total = Number(localStorage.getItem("sec1Total")) || 0
+
+    if (sec1TaskNum === 0) total = 0
+
+    let percentage = 0
+    if (total > 0) {
+        percentage = (wallet / total) * 100
+        if (percentage > 100) percentage = 100
+        if (percentage < 0) percentage = 0
+        percentage = percentage.toFixed(1)
+    }
+
+    onTheOverlay.style.width = percentage + "%"
+    percentageText.textContent = percentage + "%"
+
+    localStorage.setItem("sec1WalletInput", wallet)
+    localStorage.setItem("sec1Percentage", percentage)
+}
+
+walletInput.addEventListener("input", updateBar)
+
+window.addEventListener("DOMContentLoaded", () => {
+    walletInput.value = localStorage.getItem("sec1WalletInput") || ""
+    updateBar()
 })
