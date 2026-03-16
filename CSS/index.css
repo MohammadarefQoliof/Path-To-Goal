@@ -224,21 +224,19 @@ h1{
     height: 10px;
     border-radius: 5px;
     background-color: grey;
-    z-index: 0;
+    margin: 0 0 10px 15px;
     position: relative;
-    bottom: 10px;
-    left: 15px;
     cursor: url("../images/pointerCursor.png"), auto;
 }
 .percentcolor{
     height: 10px;
-    z-index: -1;
+    background: blue;
+    border-radius: 5px;
+    cursor: url("../images/pointerCursor.png"), auto;
 }
 .percentText{
     font-size: 12px;
     margin: 0 18px;
-    position: relative;
-    bottom: 10px;
     color: #71717A;
     cursor: url("../images/pointerCursor.png"), auto;
 }

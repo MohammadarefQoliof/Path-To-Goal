@@ -39,7 +39,15 @@ if(pageNum == 0 || !pageNum){
         let percentcolor = document.createElement("div")
         let percentText = document.createElement("p")
 
-        percentText.textContent = "15%"
+        let percent = localStorage.getItem(`sec${i}Percentage`)
+        if(percent){
+            percentcolor.style.width = percent + "%"
+            percentText.textContent = percent + "%"
+        }else{
+            percentcolor.style.width = `0%`
+            percentText.textContent = "0%"
+        }
+
         titleShow.textContent = planTitle
 
         percentText.classList.add("percentText")
@@ -55,8 +63,13 @@ if(pageNum == 0 || !pageNum){
             window.location.href = `HTML/sec${i}.html`
         })
 
+        binIcon.addEventListener("click", ()=>{
+            let taskNum = localStorage.getItem(`sec${i}Num`)
+        })
+
         binAndArrow.append(binIcon, arrow)
-        card.append(titleShow, binAndArrow, percentcolor,percentText, percentOverlay)
+        percentOverlay.append(percentcolor)
+        card.append(titleShow, binAndArrow, percentText, percentOverlay)
         body.append(card)
     }
 }
