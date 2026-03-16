@@ -59,13 +59,42 @@ if(pageNum == 0 || !pageNum){
         card.classList.add("card")
         titleShow.classList.add("title")
         
-        card.addEventListener("click", ()=>{
-            window.location.href = `HTML/sec${i}.html`
-        })
+        card.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("binIcon")) {
+                window.location.href = `HTML/sec${i}.html`;
+            }
+        });
 
-        binIcon.addEventListener("click", ()=>{
-            let taskNum = localStorage.getItem(`sec${i}Num`)
-        })
+        binIcon.addEventListener("click", () => {
+            let secNum = i;
+            let totalSections = Number(localStorage.getItem("pageNum")) || 0;
+
+            let keysToRemove = ["Total", "TaskNum", "Titles", "WalletInput", "Percentage", "Price", "Date"];
+            localStorage.removeItem(`title${secNum}`);
+            keysToRemove.forEach(key => localStorage.removeItem(`sec${secNum}${key}`));
+
+            for (let j = secNum + 1; j <= totalSections; j++) {         
+                let titleValue = localStorage.getItem(`title${j}`);
+                if (titleValue !== null) {
+                    localStorage.setItem(`title${j-1}`, titleValue);
+                }
+
+                keysToRemove.forEach(key => {
+                    let value = localStorage.getItem(`sec${j}${key}`);
+                    if (value !== null) {
+                        localStorage.setItem(`sec${j-1}${key}`, value);
+                    }
+                });
+            }
+
+            localStorage.removeItem(`title${totalSections}`);
+            keysToRemove.forEach(key => localStorage.removeItem(`sec${totalSections}${key}`));
+
+            totalSections--;
+            localStorage.setItem("pageNum", totalSections);
+
+            location.reload();
+        });
 
         binAndArrow.append(binIcon, arrow)
         percentOverlay.append(percentcolor)
