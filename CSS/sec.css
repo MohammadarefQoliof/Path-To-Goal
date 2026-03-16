@@ -61,7 +61,7 @@ body{
     align-items: center;
     gap: 20px;
 }
- .overlay{
+.overlay{
     width: 350px;
     height: 10px;
     border-radius: 5px;
