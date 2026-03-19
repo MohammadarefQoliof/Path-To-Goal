@@ -71,7 +71,7 @@ h1{
     background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 .inputDiv{
     width: 450px;
@@ -224,7 +224,7 @@ h1{
     height: 10px;
     border-radius: 5px;
     background-color: grey;
-    margin: 0 0 10px 15px;
+    margin: 0 0 10px 14px;
     position: relative;
     cursor: url("../images/pointerCursor.png"), auto;
 }
@@ -236,7 +236,7 @@ h1{
 }
 .percentText{
     font-size: 12px;
-    margin: 0 18px;
+    margin: 0 16px;
     color: #71717A;
     cursor: url("../images/pointerCursor.png"), auto;
 }
@@ -276,6 +276,10 @@ h1{
     }
     .percentOverlay{
         width: 93%;
+        margin: 0 0 10px 13px;
+    }
+    .percentText{
+        margin: 0 14px;
     }
 }
 @media screen and (max-width: 467px) {
@@ -301,5 +305,9 @@ h1{
     }
     .percentOverlay{
         width: 93%;
+        margin: 0 0 10px 13px;
+    }
+    .percentText{
+        margin: 0 14px;
     }
 }
