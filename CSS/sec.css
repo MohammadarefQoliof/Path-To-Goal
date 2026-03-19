@@ -292,7 +292,7 @@ body{
     }
     .card{
         width: 95%;
-        font-size: 4vw;
+        font-size: 3vw;
     }
     .backgroundCard{
         width: 90%;
@@ -327,6 +327,6 @@ body{
         top: auto;
     }
     .card{
-        font-size: 4vw;
+        font-size: 3vw;
     }
 }
