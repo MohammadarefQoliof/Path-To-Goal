@@ -22,7 +22,7 @@ if(sec4TaskNum <= 0 || !sec4TaskNum){
     let p2 = document.createElement("p")
     let icon = document.createElement("img")
     
-    icon.src = "/images/toDoList.png"
+    icon.src = "../images/toDoList.png"
     
     p1.textContent = "No tasks in this plan"
     p2.textContent = "Add your first task to this plan to get started."
@@ -124,13 +124,13 @@ newTask.addEventListener("click", ()=>{
     titleText.textContent = "Task Title"
     titleText2.textContent = "Price"
     titleText3.textContent = "Date"
-    cross.src = "/images/cross.png"
+    cross.src = "../images/cross.png"
 
     cross.addEventListener("mouseout", ()=>{
-        cross.src = "/images/cross.png"
+        cross.src = "../images/cross.png"
     })
     cross.addEventListener("mouseover", ()=>{
-        cross.src = "/images/close.png"
+        cross.src = "../images/close.png"
     })
     cross.addEventListener("click", ()=>{
         inputDiv.classList.add("animate")
