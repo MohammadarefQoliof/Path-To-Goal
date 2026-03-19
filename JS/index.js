@@ -134,7 +134,7 @@ if(pageNum >= 5){
             cross.src = "../images/cross.png"
         })
         cross.addEventListener("mouseover", ()=>{
-            cross.src = "../images/cross.png"
+            cross.src = "../images/close.png"
         })
         cross.addEventListener("click", ()=>{
             inputDiv.classList.add("animate")
