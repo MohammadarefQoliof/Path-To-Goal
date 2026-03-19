@@ -326,4 +326,7 @@ body{
     .newTaskBtn{
         top: auto;
     }
+    .card{
+        font-size: 4vw;
+    }
 }
