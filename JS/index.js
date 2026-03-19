@@ -128,13 +128,13 @@ if(pageNum >= 5){
         save.textContent = "Save Plan"
         topic.textContent = "Create a new plan"
         titleText.textContent = "Plan Title"
-        cross.src = "/images/cross.png"
+        cross.src = "../images/cross.png"
     
         cross.addEventListener("mouseout", ()=>{
-            cross.src = "/images/cross.png"
+            cross.src = "../images/cross.png"
         })
         cross.addEventListener("mouseover", ()=>{
-            cross.src = "/images/close.png"
+            cross.src = "../images/cross.png"
         })
         cross.addEventListener("click", ()=>{
             inputDiv.classList.add("animate")
